@@ -1,5 +1,7 @@
 # VPC Modules
 
+![CircleCI](https://circleci.com/gh/crowdanalyzer/terraform-aws-vpc.svg?style=shield&circle-token=568a8fb6dabfb0141664a16745b3619e8e33aae0)
+
 This repo contains modules for creating best practices Virtual Private Clouds (VPCs) on AWS.
 
 ## Main Modules
