@@ -1,0 +1,28 @@
+version: 2
+references:
+  images: &images
+    docker:
+      - image: 'hashicorp/terraform:latest'
+jobs:
+  checks:
+    <<: *images
+    steps:
+      - checkout
+      - run:
+          name: Running lint
+          command: ./.scripts/lint.sh
+  publish:
+    <<: *images
+    steps:
+      - checkout
+workflows:
+  version: 2
+  test_and_publish:
+    jobs:
+      - checks
+      - publish:
+          requires:
+            - checks
+          filters:
+            branches:
+              only: master
