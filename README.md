@@ -16,7 +16,7 @@ This repo contain several supporting modules that add extra functionality on top
 
 - **vpc-peering**: Creates peering connection between VPCs. Normally VPCs are completely isolated from each other, but sometimes, you want to allow traffic to flow between them. This module creates peering connections and route table entries that makes this sort of cross-vpc communication possible. **Note** than VPC peering can't exist between two VPCs that have overlapping CIDR blocks.
 
-- **bastion-host**: Creates an EC2 instance in a public subnet to provide access to instances in a private subnet.
+- **[bastion-host](./modules/bastion-host/)**: Creates an EC2 instance in a public subnet to provide access to instances in a private subnet.
 
 ---
 
