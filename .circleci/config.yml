@@ -9,6 +9,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Installing bash
+          command: apk add --no-cache bash
+      - run:
           name: Running lint
           command: ./.scripts/lint.sh
   publish:
