@@ -9,7 +9,7 @@
 # ------------------------------------------------------------------------------------------------------------------
 
 terraform {
-    required_version = ">= 0.13, < 0.14"
+  required_version = ">= 0.13, < 0.14"
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -17,7 +17,7 @@ terraform {
 # ------------------------------------------------------------------------------------------------------------------
 
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -25,12 +25,12 @@ provider "aws" {
 # ------------------------------------------------------------------------------------------------------------------
 
 module "multi_az_2tiers_vpc" {
-    source = "../../modules/vpc-2tiers"
+  source = "../../modules/vpc-2tiers"
 
-    name = var.name
-    cidr_block = var.cidr_block
+  name       = var.name
+  cidr_block = var.cidr_block
 
-    availability_zones = var.availability_zones
-    public_subnets = var.public_subnets
-    private_subnets = var.private_subnets
+  availability_zones = var.availability_zones
+  public_subnets     = var.public_subnets
+  private_subnets    = var.private_subnets
 }

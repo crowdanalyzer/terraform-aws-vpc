@@ -10,7 +10,7 @@
 # ------------------------------------------------------------------------------------------------------------------
 
 terraform {
-    required_version = ">= 0.13, < 0.14"
+  required_version = ">= 0.13, < 0.14"
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ terraform {
 # ------------------------------------------------------------------------------------------------------------------
 
 provider "aws" {
-    region = "us-east-1"
+  region = "us-east-1"
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -26,24 +26,24 @@ provider "aws" {
 # ------------------------------------------------------------------------------------------------------------------
 
 module "single_az_2tiers_vpc" {
-    source = "../../modules/vpc-2tiers"
+  source = "../../modules/vpc-2tiers"
 
-    name = var.vpc_name
-    cidr_block = var.vpc_cidr_block
+  name       = var.vpc_name
+  cidr_block = var.vpc_cidr_block
 
-    availability_zones = [var.availability_zone]
-    public_subnets = [var.public_subnet_cidr_block]
-    private_subnets = [var.private_subnet_cidr_block]
+  availability_zones = [var.availability_zone]
+  public_subnets     = [var.public_subnet_cidr_block]
+  private_subnets    = [var.private_subnet_cidr_block]
 
-    tags = var.tags
+  tags = var.tags
 }
 
 # ------------------------------------------------------------------------------------------------------------------
 # REGISTER A KEY PAIR WITH AWS
 # ------------------------------------------------------------------------------------------------------------------
 resource "aws_key_pair" "test_key" {
-    key_name = "single-az-2tiers-vpc-with-bastion-host-example-key"
-    public_key = file("${path.module}/test-key")
+  key_name   = "single-az-2tiers-vpc-with-bastion-host-example-key"
+  public_key = file("${path.module}/test-key")
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -51,69 +51,69 @@ resource "aws_key_pair" "test_key" {
 # ------------------------------------------------------------------------------------------------------------------
 
 resource "aws_security_group" "private_instance_security_group" {
-    name = "${var.vpc_name}-private-instance-security-group"
-    description = "The security group for ${var.vpc_name} private instance."
+  name        = "${var.vpc_name}-private-instance-security-group"
+  description = "The security group for ${var.vpc_name} private instance."
 
-    vpc_id = module.single_az_2tiers_vpc.vpc_id
+  vpc_id = module.single_az_2tiers_vpc.vpc_id
 
-    # allow all outbound calls from the private instance
-    egress {
-        description = "allow all outbound communications from the private instance to the internet."
+  # allow all outbound calls from the private instance
+  egress {
+    description = "allow all outbound communications from the private instance to the internet."
 
-        from_port = 0
-        to_port = 0
-        protocol = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-    # allow ssh connections into the private instance from anywhere
-    # although we are not restricting the ssh connection here,
-    # you won't be able to ssh into this instance from anywhere except the bastion host
-    ingress {
-        description = "allow ssh into the private instance."
+  # allow ssh connections into the private instance from anywhere
+  # although we are not restricting the ssh connection here,
+  # you won't be able to ssh into this instance from anywhere except the bastion host
+  ingress {
+    description = "allow ssh into the private instance."
 
-        from_port = var.ssh_port
-        to_port = var.ssh_port
-        protocol = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+    from_port   = var.ssh_port
+    to_port     = var.ssh_port
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-    tags = merge(
-        {
-            Name = "${var.vpc_name}-private-instance-security-group"
-        },
-        var.tags
-    )
+  tags = merge(
+    {
+      Name = "${var.vpc_name}-private-instance-security-group"
+    },
+    var.tags
+  )
 }
 
 resource "aws_instance" "private_instance" {
-    ami = var.ami
-    availability_zone = var.availability_zone
-    subnet_id = module.single_az_2tiers_vpc.private_subnets_ids[0]
-    instance_type = var.instance_type
+  ami               = var.ami
+  availability_zone = var.availability_zone
+  subnet_id         = module.single_az_2tiers_vpc.private_subnets_ids[0]
+  instance_type     = var.instance_type
 
-    vpc_security_group_ids = [aws_security_group.private_instance_security_group.id]
-    key_name = aws_key_pair.test_key.key_name
+  vpc_security_group_ids = [aws_security_group.private_instance_security_group.id]
+  key_name               = aws_key_pair.test_key.key_name
 
-    root_block_device {
-        volume_type = "gp2"
-        volume_size = 10
-        delete_on_termination = true
-    }
+  root_block_device {
+    volume_type           = "gp2"
+    volume_size           = 10
+    delete_on_termination = true
+  }
 
-    tags = merge(
-        {
-            Name = "${var.vpc_name}-private-instance"
-        },
-        var.tags
-    )
+  tags = merge(
+    {
+      Name = "${var.vpc_name}-private-instance"
+    },
+    var.tags
+  )
 
-    volume_tags = merge(
-        {
-            Name = "${var.vpc_name}-private-instance-volume"
-        },
-        var.tags
-    )
+  volume_tags = merge(
+    {
+      Name = "${var.vpc_name}-private-instance-volume"
+    },
+    var.tags
+  )
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -121,21 +121,21 @@ resource "aws_instance" "private_instance" {
 # ------------------------------------------------------------------------------------------------------------------
 
 module "bastion_host" {
-    source = "../../modules/bastion-host"
+  source = "../../modules/bastion-host"
 
-    name = "${var.vpc_name}-bastion-host"
+  name = "${var.vpc_name}-bastion-host"
 
-    ami = var.ami
+  ami = var.ami
 
-    availability_zone = var.availability_zone
-    vpc_id = module.single_az_2tiers_vpc.vpc_id
-    subnet_id = module.single_az_2tiers_vpc.public_subnets_ids[0]
+  availability_zone = var.availability_zone
+  vpc_id            = module.single_az_2tiers_vpc.vpc_id
+  subnet_id         = module.single_az_2tiers_vpc.public_subnets_ids[0]
 
-    key_name = aws_key_pair.test_key.key_name
-    allowed_ssh_cidr_blocks = ["0.0.0.0/0"]
+  key_name                = aws_key_pair.test_key.key_name
+  allowed_ssh_cidr_blocks = ["0.0.0.0/0"]
 
-    instance_type = var.instance_type
-    ssh_port = var.ssh_port
+  instance_type = var.instance_type
+  ssh_port      = var.ssh_port
 
-    tags = var.tags
+  tags = var.tags
 }
