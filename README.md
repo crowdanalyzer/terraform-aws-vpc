@@ -6,7 +6,7 @@ This repo contains modules for creating best practices Virtual Private Clouds (V
 
 The main module of this repo is
 
-- **vpc-2tiers**: Launches a *"2 tiers"* VPC that includes public and private subnets, routing rules, security groups, network ACLs, and NAT gateways.
+- **[vpc-2tiers](./modules/vpc-2tiers/)**: Launches a *"2 tiers"* VPC that includes public and private subnets, routing rules, security groups, network ACLs, and NAT gateways.
 
 ---
 
@@ -15,6 +15,8 @@ The main module of this repo is
 This repo contain several supporting modules that add extra functionality on top of the vpc-2tiers module:
 
 - **vpc-peering**: Creates peering connection between VPCs. Normally VPCs are completely isolated from each other, but sometimes, you want to allow traffic to flow between them. This module creates peering connections and route table entries that makes this sort of cross-vpc communication possible. **Note** than VPC peering can't exist between two VPCs that have overlapping CIDR blocks.
+
+- **bastion-host**: Creates an EC2 instance in a public subnet to provide access to instances in a private subnet.
 
 ---
 
