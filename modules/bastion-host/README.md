@@ -29,3 +29,40 @@ ssh ec2-user@<EC2-INSTANCE-PRIVATE-IP-ADDRESS>
 ## Using Port Forwarding with Your Bastion Host
 
 When you connect via SSH to your Bastion Host, you may opt to expose certain ports using SSH Local Port Forwarding. For example, you could SSH to the Bastion Host with `ssh -L 8500:ec2-instance.com:8500 mylogin@bastion-host.com`, which will open a listener at `localhost:8500` which is routed to the Bastion Host where it is then further routed to `ec2-instance.com:8500` from the Bastion Host. As a result, just by connecting to `http://localhost:8500` from your local machine, you could view, for example, the UI running on port `8500` on the private instance.
+
+---
+
+## How do you use this module?
+
+This folder defines a terraform module, which you can use in your code by adding a module configuration and setting its `source` parameter to `URL` of this folder:
+
+```tf
+module "bastion_host" {
+  # Use version v1.0.0 of the bastion-host module
+  source = "git::git@github.com/crowdanalyzer/terraform-aws-vpc//modules/bastion-host?ref=v1.0.0"
+
+  # Specify the name of the bastion host.
+  name = "john-snow"
+
+  # Specify the ami of the bastion host.
+  # (e.g. Amazon Linux 2 AMI)
+  ami = "ami-02354e95b39ca8dec"
+
+  # Specify the availability zone to launch the bastion host in
+  availability_zone = "us-east-1a"
+
+  # Specify the VPC id to launch the bastion host in
+  vpc_id = "vpc-xxxxxxxxxx"
+
+  # Specify the Subnet id to launch the bastion host in
+  subnet_id = "subnet-xxxxxxxxxx"
+
+  # Specify the key pair name to be used for the bastion host ssh key
+  key_name = "test-key"
+
+  # specify the allowed CIDR Blocks for remote ssh connections
+  allowed_ssh_cidr_blocks = ["0.0.0.0/0"]
+
+  # ... See variables.tf for the other parameters you can specify for the bastion-host module
+}
+```
