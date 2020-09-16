@@ -7,9 +7,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Installing bash
-          command: apk add --no-cache bash
-      - run:
           name: Running lint
           command: terraform fmt -check -recursive
   publish:
