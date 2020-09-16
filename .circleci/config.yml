@@ -1,11 +1,9 @@
-version: 2
-references:
-  images: &images
+version: 2.1
+
+jobs:
+  test:
     docker:
       - image: 'hashicorp/terraform:latest'
-jobs:
-  checks:
-    <<: *images
     steps:
       - checkout
       - run:
@@ -15,17 +13,19 @@ jobs:
           name: Running lint
           command: terraform fmt -check -recursive
   publish:
-    <<: *images
+    docker:
+      - image: 'circleci/node:latest'
     steps:
       - checkout
+      - run:
+          name: Publishing modules
+          command: npx semantic-release
 workflows:
   version: 2
   test_and_publish:
     jobs:
-      - checks
+      - test
       - publish:
+          context: semantic-release
           requires:
-            - checks
-          filters:
-            branches:
-              only: master
+            - test
