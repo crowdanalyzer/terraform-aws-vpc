@@ -41,3 +41,6 @@ module "vpc_2tiers" {
   # ... See variables.tf for the other parameters you can specify for the vpc-2tiers module
 }
 ```
+
+**Note** that `public_subnets`, `private_subnets`, and `availability_zones` must have the same length. The CIDR blocks of both `public_subnets` and `private_subnets`
+use the availability zone defined at the same *index* in the `availability_zone`.
