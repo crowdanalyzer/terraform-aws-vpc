@@ -1,5 +1,5 @@
 {
-  "branch": "feat/add-public-private-vpc",
+  "branch": "master",
   "tagFormat": "v${version}",
   "plugins": [
     "@semantic-release/commit-analyzer",

@@ -32,3 +32,6 @@ workflows:
           context: semantic-release
           requires:
             - test
+          filters:
+            branches:
+              only: master
