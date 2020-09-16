@@ -16,7 +16,7 @@ The main module of this repo is
 
 This repo contain several supporting modules that add extra functionality on top of the vpc-2tiers module:
 
-- **vpc-peering**: Creates peering connection between VPCs. Normally VPCs are completely isolated from each other, but sometimes, you want to allow traffic to flow between them. This module creates peering connections and route table entries that makes this sort of cross-vpc communication possible. **Note** than VPC peering can't exist between two VPCs that have overlapping CIDR blocks.
+- **vpc-peering**: Creates peering connection between VPCs. Normally VPCs are completely isolated from each other, but sometimes, you want to allow traffic to flow between them. This module creates peering connections and route table entries that makes this sort of cross-vpc communication possible. **Note** that VPC peering can't exist between two VPCs that have overlapping CIDR blocks.
 
 - **[bastion-host](./modules/bastion-host/)**: Creates an EC2 instance in a public subnet to provide access to instances in a private subnet.
 
@@ -56,7 +56,7 @@ A **NAT** or Network Address Translation Gateway is a network component that all
 
 ### What is a Routes Table?
 
-A **Routes Table** allows the flow of traffic according to certian policies. Traffic within the VPC doesn't need to be routed. When you want to access a resource outside your VPC, you route the traffic through IGW or NAT Gateway.
+A **Routes Table** allows the flow of traffic according to certain policies. Traffic within the VPC doesn't need to be routed. When you want to access a resource outside your VPC, you route the traffic through IGW or NAT Gateway.
 
 ### What is a NACL?
 
