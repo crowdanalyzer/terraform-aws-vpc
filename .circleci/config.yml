@@ -18,6 +18,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Installing Semantic Release
+          command: npm install semantic-release @semantic-release/changelog @semantic-release/git
+      - run:
           name: Publishing modules
           command: npx semantic-release
 workflows:
