@@ -36,10 +36,10 @@ When you connect via SSH to your Bastion Host, you may opt to expose certain por
 
 This folder defines a terraform module, which you can use in your code by adding a module configuration and setting its `source` parameter to `URL` of this folder:
 
-```tf
+```hcl
 module "bastion_host" {
   # Use version v1.0.0 of the bastion-host module
-  source = "git::git@github.com/crowdanalyzer/terraform-aws-vpc//modules/bastion-host?ref=v1.0.0"
+  source = "git::git@github.com:crowdanalyzer/terraform-aws-vpc//modules/bastion-host?ref=v1.0.0"
 
   # Specify the name of the bastion host.
   name = "john-snow"
