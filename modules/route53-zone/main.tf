@@ -7,11 +7,11 @@ resource "aws_route53_zone" "route53_zone" {
   comment = "${var.domain_name} private hosted zone."
 
   dynamic "vpc" {
-    for_each = { for v in var.vpcs : v.id => v.region }
+    for_each = { for v in var.vpcs : v.id => v }
 
     content {
-      vpc_id     = vpc.key
-      vpc_region = vpc.value
+      vpc_id     = vpc.value.id
+      vpc_region = vpc.value.region
     }
   }
 
