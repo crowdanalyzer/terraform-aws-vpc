@@ -1,7 +1,9 @@
 # ------------------------------------------------------------------------------------------------------------------
-# DEPLOY A SINGLE AVAILABILITY ZONE TWO TIERS VPC WITH A BASTION HOST
-# This example shows how to use vpc-2tiers module & bastion-host module to deploy a single availability zone VPC
-# in AWS restricting ssh connections to the private subnet instances from the bastion host.
+# DEPLOY A SINGLE AVAILABILITY ZONE TWO TIERS VPC WITH A BASTION HOST AND A ROUTE53 ZONE
+# This example shows how to use vpc-2tiers module, bastion-host module, and route53 zone module
+# to deploy a single availability zone VPC in AWS
+# restricting ssh connections to the private subnet instances from the bastion host
+# and associating a domain from a private route53 zone.
 # ------------------------------------------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -18,7 +20,7 @@ terraform {
 # ------------------------------------------------------------------------------------------------------------------
 
 provider "aws" {
-  region = "us-east-1"
+  region = var.region
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -138,4 +140,20 @@ module "bastion_host" {
   ssh_port      = var.ssh_port
 
   tags = var.tags
+}
+
+# ------------------------------------------------------------------------------------------------------------------
+# DEPLOY A ROUTE53 ZONE
+# ------------------------------------------------------------------------------------------------------------------
+
+module "route53_zone" {
+  source = "../../modules/route53-zone"
+
+  domain_name = var.route53_zone_domain_name
+  vpcs = [
+    {
+      id     = module.single_az_2tiers_vpc.vpc_id
+      region = var.region
+    }
+  ]
 }

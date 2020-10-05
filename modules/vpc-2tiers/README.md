@@ -18,10 +18,10 @@ To ssh into any of your EC2 instances in a private subnet, we recommend launchin
 
 This folder defines a terraform module, which you can use in your code by adding a module configuration and setting its `source` parameter to `URL` of this folder:
 
-```tf
+```hcl
 module "vpc_2tiers" {
   # Use version v1.0.0 of the vpc-2tiers module
-  source = "git::git@github.com/crowdanalyzer/terraform-aws-vpc//modules/vpc-2tiers?ref=v1.0.0"
+  source = "git::git@github.com:crowdanalyzer/terraform-aws-vpc//modules/vpc-2tiers?ref=v1.0.0"
 
   # Specify the name of the VPC.
   name = "sansa-stark"

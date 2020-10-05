@@ -20,6 +20,8 @@ This repo contain several supporting modules that add extra functionality on top
 
 - **[bastion-host](./modules/bastion-host/)**: Creates an EC2 instance in a public subnet to provide access to instances in a private subnet.
 
+- **[route53-zone](./modules/route53-zone/)**: Creates a Route53 private hosted zone to be used for internal DNS records. These DNS records can be attached to machines and LBs in private subnets & VPCs.
+
 ---
 
 ## How do you use a module?
