@@ -34,9 +34,3 @@ module "multi_az_2tiers_vpc" {
   public_subnets     = var.public_subnets
   private_subnets    = var.private_subnets
 }
-
-module "hosted_zone" {
-  source      = "../../modules/route53-zone"
-  domain_name = "test-tf.crowdanalyzer.com"
-  vpcs        = [{ "vpc_id" = "vpc-02a23b6f6cea2d5c7" }, { "vpc_id" = "vpc-0e57caaa2c040828b" }]
-}
