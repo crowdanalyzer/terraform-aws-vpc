@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/crowdanalyzer/terraform-aws-vpc/compare/v1.0.0...v1.1.0) (2020-10-05)
+
+
+### Features
+
+* add route53 zone supporting module ([#4](https://github.com/crowdanalyzer/terraform-aws-vpc/issues/4)) ([81df8d5](https://github.com/crowdanalyzer/terraform-aws-vpc/commit/81df8d5a8dae528d48ca3703986e174c251c8f23))
+
 # 1.0.0 (2020-09-16)
 
 
