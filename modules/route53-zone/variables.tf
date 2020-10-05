@@ -4,11 +4,14 @@
 # ------------------------------------------------------------------------------------------------------------------
 
 variable "domain_name" {
-  description = "Domain name of the hosted zone"
+  description = "The domain name of the hosted zone."
   type        = string
 }
 
-variable "vpcs" { 
-  type        = list(string)
-  description = "A list of VPCs to associate the route53 zone to"
+variable "vpcs" {
+  description = "A list of VPCs to associate the route53 zone to."
+  type = list(object({
+    id     = string
+    region = string
+  }))
 }
