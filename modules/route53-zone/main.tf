@@ -14,4 +14,12 @@ resource "aws_route53_zone" "route53_zone" {
       vpc_region = vpc.value
     }
   }
+
+  tags = merge(
+    {
+      Domain  = var.domain_name
+      Private = true
+    },
+    var.tags
+  )
 }

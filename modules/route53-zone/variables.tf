@@ -15,3 +15,14 @@ variable "vpcs" {
     region = string
   }))
 }
+
+# ------------------------------------------------------------------------------------------------------------------
+# OPTIONAL PARAMETERS
+# These parameters have reasonable defaults.
+# ------------------------------------------------------------------------------------------------------------------
+
+variable "tags" {
+  description = "A map of tags to assign to the hosted zone created by this module."
+  type        = map(string)
+  default     = {}
+}
