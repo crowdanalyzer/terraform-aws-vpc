@@ -11,6 +11,12 @@
 # These parameters have reasonable defaults.
 # ------------------------------------------------------------------------------------------------------------------
 
+variable "region" {
+  description = "The region for the VPC."
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "vpc_name" {
   description = "The name for the VPC."
   type        = string
@@ -39,6 +45,12 @@ variable "private_subnet_cidr_block" {
   description = "The CIDR blocks of the private subnet to be created in the VPC."
   type        = string
   default     = "12.12.12.16/28"
+}
+
+variable "route53_zone_domain_name" {
+  description = "The domain name for the Route53 Zone."
+  type        = string
+  default     = "john-snow.crowd.engineer"
 }
 
 variable "ssh_port" {
