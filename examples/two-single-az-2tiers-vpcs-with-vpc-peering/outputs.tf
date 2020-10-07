@@ -9,11 +9,11 @@ output "second_vpc_id" {
 }
 
 output "vpc_peering_id" {
-    value = module.vpc_peering.vpc_peering_connection
-    description = "The ID of the VPC Connection between the two VPCs."
+  value       = module.vpc_peering.vpc_peering_connection
+  description = "The ID of the VPC Connection between the two VPCs."
 }
 
 output "vpc_peering_status" {
-    value = module.vpc_peering.vpc_peering_connection_status
-    description = "The Status of the VPC Connection between the two VPCs."
+  value       = module.vpc_peering.vpc_peering_connection_status
+  description = "The Status of the VPC Connection between the two VPCs."
 }

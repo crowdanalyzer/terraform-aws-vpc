@@ -9,7 +9,7 @@ variable "requester_vpc_id" {
 }
 
 variable "accepter_vpc_id" {
-  description = "The ID of the VPC with which you are creating the VPC Peering Cnnection" 
+  description = "The ID of the VPC with which you are creating the VPC Peering Cnnection"
   type        = string
 }
 
@@ -19,7 +19,7 @@ variable "requester_vpc_cidr_block" {
 }
 
 variable "accepter_vpc_cidr_block" {
-  description = "The CIDR block for the accepter VPC." 
+  description = "The CIDR block for the accepter VPC."
   type        = string
 }
 
@@ -29,7 +29,7 @@ variable "requester_vpc_route_table_id" {
 }
 
 variable "accepter_vpc_route_table_id" {
-  description = "The IDs of the accepter VPC route tables." 
+  description = "The IDs of the accepter VPC route tables."
   type        = string
 }
 
