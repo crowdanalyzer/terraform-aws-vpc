@@ -36,33 +36,13 @@ resource "aws_vpc_peering_connection_options" "vpc_peering_options" {
 # ------------------------------------------------------------------------------------------------------------------
 
 resource "aws_route" "requester_vpc_connection_route" {
-  route_table_id            = data.aws_route_table.requester_subnet_route_table.id
-  destination_cidr_block    = data.aws_subnet.accepter_subnet.cidr_block
+  route_table_id            = var.requester_vpc_route_table_id
+  destination_cidr_block    = var.accepter_vpc_cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
 }
 
 resource "aws_route" "accepter_vpc_connection_route" {
-  route_table_id            = data.aws_route_table.accepter_subnet_route_table.id
-  destination_cidr_block    = data.aws_subnet.requester_subnet.cidr_block
+  route_table_id            = var.accepter_vpc_route_table_id
+  destination_cidr_block    = var.requester_vpc_cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
-}
-
-# ------------------------------------------------------------------------------------------------------------------
-# GET VPC SUBNETS AND ROUTE TABLES
-# ------------------------------------------------------------------------------------------------------------------
-
-data "aws_subnet" "requester_subnet" {
-  id = var.requester_vpc_subnet_id
-}
-
-data "aws_subnet" "accepter_subnet" {
-  id = var.accepter_vpc_subnet_id
-}
-
-data "aws_route_table" "requester_subnet_route_table" {
-  subnet_id = var.requester_vpc_subnet_id
-}
-
-data "aws_route_table" "accepter_subnet_route_table" {
-  subnet_id = var.accepter_vpc_subnet_id
 }

@@ -5,22 +5,32 @@
 
 variable "requester_vpc_id" {
   description = "The ID of the VPC that request Peering Connection"
-  type        = "string"
+  type        = string
 }
 
 variable "accepter_vpc_id" {
   description = "The ID of the VPC with which you are creating the VPC Peering Cnnection" 
-  type        = "string"
+  type        = string
 }
 
-variable "requester_vpc_subnet_id" {
-  description = "The Public Subnet ID of the VPC that request Peering Connection"
-  type        = "string"
+variable "requester_vpc_cidr_block" {
+  description = "The CIDR block for the requester VPC."
+  type        = string
 }
 
-variable "accepter_vpc_subnet_id" {
-  description = "The Public Subnet ID of the VPC with which you are creating the VPC Peering Cnnection" 
-  type        = "string"
+variable "accepter_vpc_cidr_block" {
+  description = "The CIDR block for the accepter VPC." 
+  type        = string
+}
+
+variable "requester_vpc_route_table_id" {
+  description = "The IDs of the requester VPC route tables."
+  type        = string
+}
+
+variable "accepter_vpc_route_table_id" {
+  description = "The IDs of the accepter VPC route tables." 
+  type        = string
 }
 
 # ------------------------------------------------------------------------------------------------------------------
