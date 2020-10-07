@@ -20,14 +20,14 @@ resource "aws_vpc_peering_connection_options" "vpc_peering_options" {
 
   accepter {
     allow_remote_vpc_dns_resolution  = true
-    allow_classic_link_to_remote_vpc = true
-    allow_vpc_to_remote_classic_link = true
+    allow_classic_link_to_remote_vpc = var.enable_classiclink
+    allow_vpc_to_remote_classic_link = var.enable_classiclink
   }
 
   requester {
     allow_remote_vpc_dns_resolution  = true
-    allow_classic_link_to_remote_vpc = true
-    allow_vpc_to_remote_classic_link = true
+    allow_classic_link_to_remote_vpc = var.enable_classiclink
+    allow_vpc_to_remote_classic_link = var.enable_classiclink
   }
 }
 

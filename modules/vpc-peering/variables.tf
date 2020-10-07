@@ -38,6 +38,12 @@ variable "accepter_vpc_route_table_id" {
 # These parameters have reasonable defaults.
 # ------------------------------------------------------------------------------------------------------------------
 
+variable "enable_classiclink" {
+  description = "Allow communications EC2-Classic Instance with peer VPC"
+  type        = bool
+  default     = true
+}
+
 variable "tags" {
   description = "A map of tags to assign to the resources created by this module"
   type        = map(string)
