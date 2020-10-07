@@ -23,6 +23,12 @@ module "vpc_peering" {
 
   # Specitfy the ID of the second VPC.
   accepter_vpc_id = "vpc-0483bbc9e72869fe5"
+
+  requester_vpc_cidr_block = "11.11.11.0/24"
+  accepter_vpc_cidr_block = "12.12.12.0/24"
+
+  requester_vpc_route_table_id = "rtb-02f0c7820f87f26d4"
+  accepter_vpc_route_table_id = "rtb-02f0c7820f87f26d5"
 }
 ```
 
