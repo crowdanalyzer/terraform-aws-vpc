@@ -18,6 +18,11 @@ output "private_subnets_ids" {
   description = "A list of Private Subnets IDs created by this module."
 }
 
+output "route_tables_ids" {
+  value       = values(aws_route_table.private_subnets_route_tables)[*].id
+  description = "A list of route tables for the Private subnets."
+}
+
 output "nat_gateways_public_ips" {
   value       = values(aws_eip.eips)[*].public_ip
   description = "A list of Public IP addresses used by the NAT gateways created by this module."
