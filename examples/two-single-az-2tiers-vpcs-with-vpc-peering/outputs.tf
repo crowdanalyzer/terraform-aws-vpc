@@ -9,7 +9,7 @@ output "second_vpc_id" {
 }
 
 output "vpc_peering_id" {
-  value       = module.vpc_peering.vpc_peering_connection
+  value       = module.vpc_peering.vpc_peering_connection_id
   description = "The ID of the VPC Connection between the two VPCs."
 }
 

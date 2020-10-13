@@ -16,7 +16,7 @@ This folder defines a terraform module, which you can use in your code by adding
 ```tf
 module "vpc_peering" {
   # Use version v1.0.0 of the vpc-peering module
-  source = "git::git@github.com/crowdanalyzer/terraform-aws-vpc//modules/vpc-peering?ref=v1.0.0"
+  source = "git::git@github.com:crowdanalyzer/terraform-aws-vpc//modules/vpc-peering?ref=v1.0.0"
 
   # Specify the ID of the first VPC.
   requester_vpc_id = "vpc-013a862580e738b14"

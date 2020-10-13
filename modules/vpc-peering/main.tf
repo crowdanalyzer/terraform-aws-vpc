@@ -2,7 +2,7 @@
 # CREATE VPC TO VPC PEERING CONNECTION AND ITS OPTIONS
 # ------------------------------------------------------------------------------------------------------------------
 
-resource "aws_vpc_peering_connection" "vpc_peering" {
+resource "aws_vpc_peering_connection" "vpc_peering_connection" {
   vpc_id      = var.requester_vpc_id
   peer_vpc_id = var.accepter_vpc_id
   auto_accept = true
@@ -15,7 +15,7 @@ resource "aws_vpc_peering_connection" "vpc_peering" {
   )
 }
 
-resource "aws_vpc_peering_connection_options" "vpc_peering_options" {
+resource "aws_vpc_peering_connection_options" "vpc_peering_connection_options" {
   vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
 
   accepter {

@@ -4,12 +4,12 @@
 # ------------------------------------------------------------------------------------------------------------------
 
 variable "requester_vpc_id" {
-  description = "The ID of the VPC that request Peering Connection"
+  description = "The ID of the VPC requesting the peering connection."
   type        = string
 }
 
 variable "accepter_vpc_id" {
-  description = "The ID of the VPC with which you are creating the VPC Peering Cnnection"
+  description = "The ID of the VPC with which the peering connection is created."
   type        = string
 }
 
@@ -39,13 +39,13 @@ variable "accepter_vpc_route_table_id" {
 # ------------------------------------------------------------------------------------------------------------------
 
 variable "enable_classiclink" {
-  description = "Allow communications EC2-Classic Instance with peer VPC"
+  description = "Enable / disable communication between a local linked EC2-Classic instance and instances in the peer VPCs."
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "tags" {
-  description = "A map of tags to assign to the resources created by this module"
+  description = "A map of tags to assign to the resources created by this module."
   type        = map(string)
   default     = {}
 }
