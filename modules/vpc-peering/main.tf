@@ -16,7 +16,7 @@ resource "aws_vpc_peering_connection" "vpc_peering_connection" {
 }
 
 resource "aws_vpc_peering_connection_options" "vpc_peering_connection_options" {
-  vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
+  vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering_connection.id
 
   accepter {
     allow_remote_vpc_dns_resolution  = true
@@ -31,18 +31,43 @@ resource "aws_vpc_peering_connection_options" "vpc_peering_connection_options" {
   }
 }
 
+
+# ------------------------------------------------------------------------------------------------------------------
+# GET VPC AND ITS ROUTE TABLES TO ADD ROUTES
+# ------------------------------------------------------------------------------------------------------------------
+
+data "aws_vpc" "requester_vpc" {
+  id = var.requester_vpc_id
+}
+
+data "aws_vpc" "accepter_vpc" {
+  id = var.accepter_vpc_id
+}
+
+data "aws_route_tables" "requester_vpc_route_tables" {
+  vpc_id = var.requester_vpc_id
+}
+
+data "aws_route_tables" "accepter_vpc_route_tables" {
+  vpc_id = var.accepter_vpc_id
+}
+
 # ------------------------------------------------------------------------------------------------------------------
 # CREATE ROUTES FOR SUBNETS ROUTE TABLE SO INSTANCES COULD COMMUNICATE WITH EACH OTHER
 # ------------------------------------------------------------------------------------------------------------------
 
 resource "aws_route" "requester_vpc_connection_route" {
-  route_table_id            = var.requester_vpc_route_table_id
-  destination_cidr_block    = var.accepter_vpc_cidr_block
-  vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
+  for_each = data.aws_route_tables.requester_vpc_route_tables.ids
+
+  route_table_id            = each.value
+  destination_cidr_block    = data.aws_vpc.accepter_vpc.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering_connection.id
 }
 
 resource "aws_route" "accepter_vpc_connection_route" {
-  route_table_id            = var.accepter_vpc_route_table_id
-  destination_cidr_block    = var.requester_vpc_cidr_block
-  vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering.id
+  for_each = data.aws_route_tables.accepter_vpc_route_tables.ids
+
+  route_table_id            = each.value
+  destination_cidr_block    = data.aws_vpc.requester_vpc.cidr_block
+  vpc_peering_connection_id = aws_vpc_peering_connection.vpc_peering_connection.id
 }

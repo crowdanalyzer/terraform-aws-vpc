@@ -13,25 +13,25 @@ variable "accepter_vpc_id" {
   type        = string
 }
 
-variable "requester_vpc_cidr_block" {
-  description = "The CIDR block for the requester VPC."
-  type        = string
-}
+# variable "requester_vpc_cidr_block" {
+#   description = "The CIDR block for the requester VPC."
+#   type        = string
+# }
 
-variable "accepter_vpc_cidr_block" {
-  description = "The CIDR block for the accepter VPC."
-  type        = string
-}
+# variable "accepter_vpc_cidr_block" {
+#   description = "The CIDR block for the accepter VPC."
+#   type        = string
+# }
 
-variable "requester_vpc_route_table_id" {
-  description = "The IDs of the requester VPC route tables."
-  type        = string
-}
+# variable "requester_vpc_route_table_id" {
+#   description = "The IDs of the requester VPC route tables."
+#   type        = string
+# }
 
-variable "accepter_vpc_route_table_id" {
-  description = "The IDs of the accepter VPC route tables."
-  type        = string
-}
+# variable "accepter_vpc_route_table_id" {
+#   description = "The IDs of the accepter VPC route tables."
+#   type        = string
+# }
 
 # ------------------------------------------------------------------------------------------------------------------
 # OPTIONAL PARAMETERS

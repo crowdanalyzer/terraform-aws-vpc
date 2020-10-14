@@ -17,7 +17,7 @@ terraform {
 # ------------------------------------------------------------------------------------------------------------------
 
 provider "aws" {
-  region = "us-east-1"
+  region = "eu-central-1"
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -59,9 +59,8 @@ module "vpc_peering" {
   requester_vpc_id = module.single_az_2tiers_vpc_1.vpc_id
   accepter_vpc_id  = module.single_az_2tiers_vpc_2.vpc_id
 
-  requester_vpc_cidr_block = var.cidr_block_1
-  accepter_vpc_cidr_block  = var.cidr_block_2
-
-  requester_vpc_route_table_id = module.single_az_2tiers_vpc_1.route_tables_ids[0]
-  accepter_vpc_route_table_id  = module.single_az_2tiers_vpc_2.route_tables_ids[0]
+  depends_on = [
+    module.single_az_2tiers_vpc_1.aws_route_table,
+    module.single_az_2tiers_vpc_2.aws_route_table
+  ]
 }
