@@ -32,13 +32,13 @@ variable "cidr_block_2" {
 variable "availability_zone_1" {
   description = "The availability zone to launch both public and private subnets in."
   type        = string
-  default     = "eu-central-1a"
+  default     = "us-east-1a"
 }
 
 variable "availability_zone_2" {
   description = "The availability zone to launch both public and private subnets in."
   type        = string
-  default     = "eu-central-1a"
+  default     = "us-east-1a"
 }
 
 variable "public_subnet_1" {
