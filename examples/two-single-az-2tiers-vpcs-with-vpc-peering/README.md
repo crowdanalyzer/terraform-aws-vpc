@@ -10,5 +10,5 @@ To deploy a Two Tiers VPC in Two Availability Zones:
 1. Modify `main.tf` to customize your AWS region.
 2. Modify `variables.tf` to customize the requester and accepter VPCs.
 3. Run `terraform init`.
-4. Run `terraform apply`.
-5. Create instances in each VPC and try ssh from one to another.
+4. Run `terraform apply -target module.requester_vpc -target module.accepter_vpc`.
+5. Run `terraform apply`

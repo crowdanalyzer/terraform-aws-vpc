@@ -70,3 +70,33 @@ variable "accepter_vpc_private_subnet" {
   type        = string
   default     = "12.12.12.32/28"
 }
+
+variable "requester_vpc_instance_ami" {
+  description = "The instance AMI to run in requester VPC."
+  type        = string
+  default     = "ami-02354e95b39ca8dec"
+}
+
+variable "requester_vpc_instance_type" {
+  description = "The instance type to run in requester VPC."
+  type        = string
+  default     = "t2.small"
+}
+
+variable "accepter_vpc_instance_ami" {
+  description = "The instance AMI to run in accepter VPC."
+  type        = string
+  default     = "ami-02354e95b39ca8dec"
+}
+
+variable "accepter_vpc_instance_type" {
+  description = "The instance type to run in accepter VPC."
+  type        = string
+  default     = "t2.small"
+}
+
+variable "tags" {
+  description = "A map of tags to assign to the resources created by this module."
+  type        = map(string)
+  default     = {}
+}
