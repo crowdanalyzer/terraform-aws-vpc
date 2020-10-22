@@ -11,56 +11,62 @@
 # These parameters have reasonable defaults.
 # ------------------------------------------------------------------------------------------------------------------
 
-variable "name" {
-  description = "The name for the VPC."
+variable "requester_vpc_name" {
+  description = "The name for the requester VPC."
   type        = string
   default     = "sansa-stark"
 }
 
-variable "cidr_block_1" {
-  description = "The CIDR block for the VPC."
+variable "accepter_vpc_name" {
+  description = "The name for the accepter VPC."
+  type        = string
+  default     = "jon-snow"
+}
+
+variable "requester_vpc_cidr_block" {
+  description = "The CIDR block for the requester VPC."
   type        = string
   default     = "11.11.11.0/24"
 }
 
-variable "cidr_block_2" {
-  description = "The CIDR block for the VPC."
+variable "accepter_vpc_cidr_block" {
+  description = "The CIDR block for the accepter VPC."
   type        = string
   default     = "12.12.12.0/24"
 }
 
-variable "availability_zone_1" {
-  description = "The availability zone to launch both public and private subnets in."
+variable "requester_vpc_availability_zone" {
+  description = "The availability zone for the requester VPC."
   type        = string
   default     = "us-east-1a"
 }
 
-variable "availability_zone_2" {
-  description = "The availability zone to launch both public and private subnets in."
+variable "accepter_vpc_availability_zone" {
+  description = "The availability zone for the accepter VPC."
   type        = string
   default     = "us-east-1a"
 }
 
-variable "public_subnet_1" {
-  description = "The public subnet CIDR blocks to be created in the VPC."
+variable "requester_vpc_public_subnet" {
+  description = "The public subnet CIDR block to be created in the requester VPC."
   type        = string
   default     = "11.11.11.0/28"
 }
 
-variable "public_subnet_2" {
-  description = "The public subnet CIDR blocks to be created in the VPC."
+variable "accepter_vpc_public_subnet" {
+  description = "The public subnet CIDR block to be created in the accepter VPC."
   type        = string
   default     = "12.12.12.0/28"
 }
 
-variable "private_subnet_1" {
-  description = "The private subnet CIDR blocks to be created in the VPC."
+variable "requester_vpc_private_subnet" {
+  description = "The private subnet CIDR block to be created in the requester VPC."
   type        = string
   default     = "11.11.11.32/28"
 }
 
-variable "private_subnet_2" {
-  description = "The private subnet CIDR blocks to be created in the VPC."
+variable "accepter_vpc_private_subnet" {
+  description = "The private subnet CIDR block to be created in the accepter VPC."
   type        = string
   default     = "12.12.12.32/28"
 }

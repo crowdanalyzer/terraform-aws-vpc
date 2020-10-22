@@ -1,6 +1,6 @@
 # ------------------------------------------------------------------------------------------------------------------
 # DEPLOY TWO SINGLE AVAILABILITY ZONE TWO TIERS VPC IN AWS WITH VPC PEERING
-# This example shows how to use vpc-peering between two vpc-2tiers module to deploy a single availability zone VPC in AWS.
+# This example shows how to use vpc-peering between two vpc-2tiers modules deployed in a single availability zone VPC in AWS.
 # ------------------------------------------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -24,30 +24,30 @@ provider "aws" {
 # DEPLOY FIRST SINGLE AVAILABILITY ZONE VPC
 # ------------------------------------------------------------------------------------------------------------------
 
-module "single_az_2tiers_vpc_1" {
+module "requester_vpc" {
   source = "../../modules/vpc-2tiers"
 
-  name       = "${var.name}-1"
-  cidr_block = var.cidr_block_1
+  name       = var.requester_vpc_name
+  cidr_block = var.requester_vpc_cidr_block
 
-  availability_zones = [var.availability_zone_1]
-  public_subnets     = [var.public_subnet_1]
-  private_subnets    = [var.private_subnet_1]
+  availability_zones = [var.requester_vpc_availability_zone]
+  public_subnets     = [var.requester_vpc_public_subnet]
+  private_subnets    = [var.requester_vpc_private_subnet]
 }
 
 # ------------------------------------------------------------------------------------------------------------------
 # DEPLOY SECOND SINGLE AVAILABILITY ZONE VPC
 # ------------------------------------------------------------------------------------------------------------------
 
-module "single_az_2tiers_vpc_2" {
+module "accepter_vpc" {
   source = "../../modules/vpc-2tiers"
 
-  name       = "${var.name}-2"
-  cidr_block = var.cidr_block_2
+  name       = var.accepter_vpc_name
+  cidr_block = var.accepter_vpc_cidr_block
 
-  availability_zones = [var.availability_zone_2]
-  public_subnets     = [var.public_subnet_2]
-  private_subnets    = [var.private_subnet_2]
+  availability_zones = [var.accepter_vpc_availability_zone]
+  public_subnets     = [var.accepter_vpc_public_subnet]
+  private_subnets    = [var.accepter_vpc_private_subnet]
 }
 
 # ------------------------------------------------------------------------------------------------------------------
@@ -56,6 +56,6 @@ module "single_az_2tiers_vpc_2" {
 
 module "vpc_peering" {
   source           = "../../modules/vpc-peering"
-  requester_vpc_id = module.single_az_2tiers_vpc_1.vpc_id
-  accepter_vpc_id  = module.single_az_2tiers_vpc_2.vpc_id
+  requester_vpc_id = module.requester_vpc.vpc_id
+  accepter_vpc_id  = module.accepter_vpc.vpc_id
 }

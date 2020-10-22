@@ -1,19 +1,19 @@
-output "first_vpc_id" {
-  value       = module.single_az_2tiers_vpc_1.vpc_id
-  description = "The ID of the first VPC created by this module."
+output "requester_vpc_id" {
+  value       = module.requester_vpc.vpc_id
+  description = "The ID of the requester VPC created by this module."
 }
 
-output "second_vpc_id" {
-  value       = module.single_az_2tiers_vpc_2.vpc_id
-  description = "The ID of the second VPC created by this module."
+output "accepter_vpc_id" {
+  value       = module.accepter_vpc.vpc_id
+  description = "The ID of the accepter VPC created by this module."
 }
 
-output "vpc_peering_id" {
+output "vpc_peering_connection_id" {
   value       = module.vpc_peering.vpc_peering_connection_id
-  description = "The ID of the VPC Connection between the two VPCs."
+  description = "The ID of the VPC peering connection between the two VPCs."
 }
 
-output "vpc_peering_status" {
+output "vpc_peering_connection_status" {
   value       = module.vpc_peering.vpc_peering_connection_status
-  description = "The Status of the VPC Connection between the two VPCs."
+  description = "The status of the VPC peering connection between the two VPCs."
 }
