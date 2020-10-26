@@ -12,8 +12,8 @@ To deploy a Two Tiers VPC in Two Availability Zones:
 3. Run `terraform init`.
 4. Run `terraform apply -target module.requester_vpc -target module.accepter_vpc`.
 5. Run `terraform apply`
-6. Upload the public key to one of the node of the two VPCs.
-7. Try to ssh from one node to the other.
+6. Upload the private key to one of the node of the two VPCs.
+7. Try to ssh from the node containing the private key to the other node using its private IP.
 
 --
 
