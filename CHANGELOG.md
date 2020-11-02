@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/crowdanalyzer/terraform-aws-vpc/compare/v1.1.0...v1.2.0) (2020-11-02)
+
+
+### Features
+
+* vpc peering with data sources ([#6](https://github.com/crowdanalyzer/terraform-aws-vpc/issues/6)) ([f3b9310](https://github.com/crowdanalyzer/terraform-aws-vpc/commit/f3b9310fd8de5696daf6c7deb126f58266453ba6))
+
 # [1.1.0](https://github.com/crowdanalyzer/terraform-aws-vpc/compare/v1.0.0...v1.1.0) (2020-10-05)
 
 
