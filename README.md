@@ -16,7 +16,7 @@ The main module of this repo is
 
 This repo contain several supporting modules that add extra functionality on top of the vpc-2tiers module:
 
-- **vpc-peering**: Creates peering connection between VPCs. Normally VPCs are completely isolated from each other, but sometimes, you want to allow traffic to flow between them. This module creates peering connections and route table entries that makes this sort of cross-vpc communication possible. **Note** that VPC peering can't exist between two VPCs that have overlapping CIDR blocks.
+- **[vpc-peering](./modules/vpc-peering/)**: Creates peering connection between VPCs. Normally VPCs are completely isolated from each other, but sometimes, you want to allow traffic to flow between them. This module creates peering connections and route table entries that makes this sort of cross-vpc communication possible. **Note** that VPC peering can't exist between two VPCs that have overlapping CIDR blocks.
 
 - **[bastion-host](./modules/bastion-host/)**: Creates an EC2 instance in a public subnet to provide access to instances in a private subnet.
 
