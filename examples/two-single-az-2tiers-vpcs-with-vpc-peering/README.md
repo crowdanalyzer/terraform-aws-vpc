@@ -15,35 +15,36 @@ To deploy a Two Tiers VPC in Two Availability Zones:
 6. Upload the private key to one of the node of the two VPCs.
 7. Try to ssh from the node containing the private key to the other node using its private IP.
 
---
+---
 
-## Why is there two `terraform apply` one with targets and one without it?
+## Why do you need to run `terraform apply` twice?
 
 
-The "for_each" values found here in the vpc-peering module
-```tf
+The **for_each** values found here in the vpc-peering module depend on values that cannot be determined until apply.
+
+```hcl
 resource "aws_route" "requester_vpc_connection_route" {
   for_each = data.aws_route_tables.requester_vpc_route_tables.ids
 
-  ...
+  // ...
 }
 
 resource "aws_route" "accepter_vpc_connection_route" {
   for_each = data.aws_route_tables.accepter_vpc_route_tables.ids
 
-  ...
+  // ...
 }
 ```
-depends on a values that cannot be determined until apply. 
-So to overcome that, you should apply VPCs first so that these values could be determined.
-by running:
 
+So to overcome this, you should apply creating the VPCs first so that these values can be determined.
+
+
+Run this:
 ```
 terraform apply -target module.requester_vpc -target module.accepter_vpc
 ```
 
-then run:
-
+then run this:
 ```
 terraform apply
 ```
