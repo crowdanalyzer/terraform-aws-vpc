@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/crowdanalyzer/terraform-aws-vpc/compare/v1.2.0...v1.2.1) (2020-11-02)
+
+
+### Bug Fixes
+
+* add vpc peering module link in the main readme file ([#7](https://github.com/crowdanalyzer/terraform-aws-vpc/issues/7)) ([74c0c99](https://github.com/crowdanalyzer/terraform-aws-vpc/commit/74c0c99fefc34ceddfb8d1d7b3619dcfefdfc0b4))
+
 # [1.2.0](https://github.com/crowdanalyzer/terraform-aws-vpc/compare/v1.1.0...v1.2.0) (2020-11-02)
 
 
