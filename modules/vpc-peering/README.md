@@ -1,4 +1,4 @@
-# VPC-Peering Terraform Module
+# VPC Peering Terraform Module
 
 This terraform module launches a VPC connection Between two VPCs.
 
