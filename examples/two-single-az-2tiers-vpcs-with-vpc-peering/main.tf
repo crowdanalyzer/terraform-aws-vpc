@@ -25,7 +25,7 @@ provider "aws" {
 # ------------------------------------------------------------------------------------------------------------------
 resource "aws_key_pair" "test_key" {
   key_name   = "two-single-az-2tiers-vpc-with-vpc-peering-example-key"
-  public_key = file("${path.module}/test-key.pub")
+  public_key = file("${path.module}/test-key")
 }
 
 # ------------------------------------------------------------------------------------------------------------------
